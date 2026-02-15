@@ -11,55 +11,55 @@ max_final_score=df['Final_Score'].max()
 min_final_score=df['Final_Score'].min()
 prev_max_final_score=df['Final_Score'].max()
 prev_min_final_score=df['Final_Score'].min()
-#student marks to studytime
-# plt.figure(figsize=(8,6))
-# print(df.head())
-# sns.set_context("talk")
+student marks to studytime
+plt.figure(figsize=(8,6))
+print(df.head())
+sns.set_context("talk")
 
-# sns.set_style("whitegrid")
-# sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
+sns.set_style("whitegrid")
+sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
 
-# plt.axhline(avg_final_score,color="red",linestyle="--")
-# sns.despine()
-# plt.yticks(range(min_final_score, 100, 5))
+plt.axhline(avg_final_score,color="red",linestyle="--")
+sns.despine()
+plt.yticks(range(min_final_score, 100, 5))
 
-# plt.xlabel("Study Hours per Day")
-# plt.ylabel("Final Score")
-# plt.title("Study Time vs Final score")
-
-
-# plt.show()
-
-#  #boxplot for student marks to studytime
-# plt.figure(figsize=(8,6))
-# sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
-# plt.title("Distribution of Final Scores by Study Hours")
-# plt.show()
+plt.xlabel("Study Hours per Day")
+plt.ylabel("Final Score")
+plt.title("Study Time vs Final score")
 
 
-# attendance vs performance
+plt.show()
 
-# plt.figure(figsize=(8,6))
-# sns.set_style("whitegrid")
-# sns.scatterplot( data=df,x="Attendance_Percentage", y="Final_Score",)
-# plt.yticks(range(35, 101, 5))
-# sns.regplot(
-#     data=df,
-#     x="Attendance_Percentage",
-#     y="Final_Score",
-#     scatter=False,
-#     color="red"
-# )
-# sns.despine()
-# plt.ylabel("MarksObtain")
-# plt.xlabel("Attendance")
-# plt.title("Attendance (%) vs Final Score Density")
-# plt.savefig(
-#     "plots/attendance_vs_performance.png",
-#     dpi=300,
-#     bbox_inches="tight"
-# )
-# plt.show()
+ #boxplot for student marks to studytime
+plt.figure(figsize=(8,6))
+sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
+plt.title("Distribution of Final Scores by Study Hours")
+plt.show()
+
+
+attendance vs performance
+
+plt.figure(figsize=(8,6))
+sns.set_style("whitegrid")
+sns.scatterplot( data=df,x="Attendance_Percentage", y="Final_Score",)
+plt.yticks(range(35, 101, 5))
+sns.regplot(
+    data=df,
+    x="Attendance_Percentage",
+    y="Final_Score",
+    scatter=False,
+    color="red"
+)
+sns.despine()
+plt.ylabel("MarksObtain")
+plt.xlabel("Attendance")
+plt.title("Attendance (%) vs Final Score Density")
+plt.savefig(
+    "plots/attendance_vs_performance.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+plt.show()
 
 
 plt.show()
