@@ -12,97 +12,107 @@ max_final_score=df['Final_Score'].max()
 min_final_score=df['Final_Score'].min()
 prev_max_final_score=df['Final_Score'].max()
 prev_min_final_score=df['Final_Score'].min()
-<<<<<<< HEAD
-student marks to studytime
-plt.figure(figsize=(8,6))
-print(df.head())
-sns.set_context("talk")
+def getrange(x,y):
+    start_y = (int(x) // 10) * 10
+    end_y = ((int(y) // 10) + 1) * 10
+    coord=[start_y,end_y]
+#     return coord
+# # student marks to studytime
+# plt.figure(figsize=(8,6))
+# print(df.head())
+# sns.set_context("talk")
 
-sns.set_style("whitegrid")
-sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
+# sns.set_style("whitegrid")
+# sns.regplot(data=df,x="Study_Hours",y="Final_Score",color="#48379E") 
 
-plt.axhline(avg_final_score,color="red",linestyle="--")
-sns.despine()
-plt.yticks(range(min_final_score, 100, 5))
+# plt.axhline(avg_final_score,color="#14ADA0",linestyle="--",label="Avg Score")
+# plt.legend()
+# sns.despine()
+# plt.yticks(range(min_final_score, 100, 5))
 
-plt.xlabel("Study Hours per Day")
-plt.ylabel("Final Score")
-plt.title("Study Time vs Final score")
-
-
-plt.show()
-
- #boxplot for student marks to studytime
-plt.figure(figsize=(8,6))
-sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
-plt.title("Distribution of Final Scores by Study Hours")
-plt.show()
-=======
+# plt.xlabel("Study Hours per Day")
+# plt.ylabel("Final Score")
+# plt.title("Study Time vs Final score")
 
 
+# start, end = getrange(min_final_score, max_final_score)
+
+# plt.yticks(range(start, end + 1, 10))
+# plt.yticks(range(start,end+ 1, 10))
+# plt.show()
+
+# planning to remove and add something new
+#          #boxplot for student marks to studytime
+#         plt.figure(figsize=(8,6))
+#         sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
+#         plt.title("Distribution of Final Scores by Study Hours")
+#         plt.show()
 
 
-#student marks to studytime
 
 
-plt.yticks(range(start_y, end_y + 1, 10))
-plt.ylim(start_y, end_y)
-plt.figure(figsize=(8,6))
-print(df.head())
-sns.set_context("talk")
 
-sns.set_style("whitegrid")
-sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
-
-plt.axhline(avg_final_score,color="red",linestyle="--")
-plt.axhline(prev_avg_final_score,color="blue",linestyle="--")
-sns.despine()
-start_y = (int(min_final_score) // 10) * 10
-end_y = ((int(df["Final_Score"].max()) // 10) + 1) * 10
-plt.yticks(range(start_y, end_y, 5))
-
-plt.xlabel("Study Hours per Day")
-plt.ylabel("Final Score")
-plt.title("Study Time vs Final score")
+# #student marks to studytime
 
 
-plt.show()
+# plt.yticks(range(start_y, end_y + 1, 10))
+# plt.ylim(start_y, end_y)
+# plt.figure(figsize=(8,6))
+# print(df.head())
+# sns.set_context("talk")
+
+# sns.set_style("whitegrid")
+# sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
+
+# plt.axhline(avg_final_score,color="red",linestyle="--")
+# plt.axhline(prev_avg_final_score,color="blue",linestyle="--")
+# sns.despine()
+# start_y = (int(min_final_score) // 10) * 10
+# end_y = ((int(df["Final_Score"].max()) // 10) + 1) * 10
+# plt.yticks(range(start_y, end_y, 5))
+
+# plt.xlabel("Study Hours per Day")
+# plt.ylabel("Final Score")
+# plt.title("Study Time vs Final score")
+
+
+# plt.show()
 
   
 
- #boxplot for student marks to studytime
+#  #boxplot for student marks to studytime
+# # plt.figure(figsize=(8,6))
+# # sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
+# # plt.axhline(avg_final_score,color="red",linestyle="--")
+
+# # plt.title("Distribution of Final Scores by Study Hours")
+# # plt.show()
+
+
+
+# # attendance vs performance
+
 # plt.figure(figsize=(8,6))
-# sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
-# plt.axhline(avg_final_score,color="red",linestyle="--")
-
-# plt.title("Distribution of Final Scores by Study Hours")
+# sns.set_style("whitegrid")
+# sns.scatterplot( data=df,x="Attendance_Percentage", y="Final_Score",)
+# plt.yticks(range(35, 101, 5))
+# sns.regplot(
+#     data=df,
+#     x="Attendance_Percentage",
+#     y="Final_Score",
+#     scatter=False,
+#     color="red"
+# )
+# sns.despine()
+# plt.ylabel("MarksObtain")
+# plt.xlabel("Attendance")
+# plt.title("Attendance (%) vs Final Score Density")
+# plt.savefig(
+#     "plots/attendance_vs_performance.png",
+#     dpi=300,
+#     bbox_inches="tight"
+# )
 # plt.show()
->>>>>>> 22c052b (adding min and max limit of y axis)
 
 
-attendance vs performance
-
-plt.figure(figsize=(8,6))
-sns.set_style("whitegrid")
-sns.scatterplot( data=df,x="Attendance_Percentage", y="Final_Score",)
-plt.yticks(range(35, 101, 5))
-sns.regplot(
-    data=df,
-    x="Attendance_Percentage",
-    y="Final_Score",
-    scatter=False,
-    color="red"
-)
-sns.despine()
-plt.ylabel("MarksObtain")
-plt.xlabel("Attendance")
-plt.title("Attendance (%) vs Final Score Density")
-plt.savefig(
-    "plots/attendance_vs_performance.png",
-    dpi=300,
-    bbox_inches="tight"
-)
-plt.show()
-
-
-plt.show()
+# plt.show()
