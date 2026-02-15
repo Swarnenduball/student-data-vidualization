@@ -7,32 +7,48 @@ df=pd.read_csv("student.csv")
 # print(df.head())
 avg_study_hour=df['Study_Hours'].mean()
 avg_final_score=df['Final_Score'].mean()
+prev_avg_final_score=df['Previous_Grade'].mean()
 max_final_score=df['Final_Score'].max()
 min_final_score=df['Final_Score'].min()
 prev_max_final_score=df['Final_Score'].max()
 prev_min_final_score=df['Final_Score'].min()
+
+
+
+
 #student marks to studytime
-# plt.figure(figsize=(8,6))
-# print(df.head())
-# sns.set_context("talk")
-
-# sns.set_style("whitegrid")
-# sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
-
-# plt.axhline(avg_final_score,color="red",linestyle="--")
-# sns.despine()
-# plt.yticks(range(min_final_score, 100, 5))
-
-# plt.xlabel("Study Hours per Day")
-# plt.ylabel("Final Score")
-# plt.title("Study Time vs Final score")
 
 
-# plt.show()
+plt.yticks(range(start_y, end_y + 1, 10))
+plt.ylim(start_y, end_y)
+plt.figure(figsize=(8,6))
+print(df.head())
+sns.set_context("talk")
 
-#  #boxplot for student marks to studytime
+sns.set_style("whitegrid")
+sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
+
+plt.axhline(avg_final_score,color="red",linestyle="--")
+plt.axhline(prev_avg_final_score,color="blue",linestyle="--")
+sns.despine()
+start_y = (int(min_final_score) // 10) * 10
+end_y = ((int(df["Final_Score"].max()) // 10) + 1) * 10
+plt.yticks(range(start_y, end_y, 5))
+
+plt.xlabel("Study Hours per Day")
+plt.ylabel("Final Score")
+plt.title("Study Time vs Final score")
+
+
+plt.show()
+
+  
+
+ #boxplot for student marks to studytime
 # plt.figure(figsize=(8,6))
 # sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
+# plt.axhline(avg_final_score,color="red",linestyle="--")
+
 # plt.title("Distribution of Final Scores by Study Hours")
 # plt.show()
 
