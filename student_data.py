@@ -20,38 +20,10 @@ def getrange(x,y):
 
 #------------------------------------------------------------------------------------------------------------------------------
 # student marks to studytime
-plt.figure(figsize=(8,6))
-print(df.head())
-sns.set_context("talk")
 
-sns.set_style("whitegrid")
-sns.regplot(data=df,x="Study_Hours",y="Final_Score",color="#48379E") 
-
-plt.axhline(avg_final_score,color="#14ADA0",linestyle="--",label="Avg Score")
-plt.legend()
-sns.despine()
-start, end = getrange(min_final_score, max_final_score)
-
-plt.yticks(range(start, end + 1, 10))
-
-plt.xlabel("Study Hours per Day")
-plt.ylabel("Final Score")
-plt.title("Study Time vs Final score")
-
-
-start, end = getrange(min_final_score, max_final_score)
-
-plt.yticks(range(start, end + 1, 10))
-
-plt.show()
 
 # planning to remove and add something new
-#boxplot for student marks to studytime
-plt.figure(figsize=(8,6))
-sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
-plt.title("Distribution of Final Scores by Study Hours")
-plt.tight_layout()
-plt.show()
+
 
 
 
@@ -69,8 +41,8 @@ sns.set_context("talk")
 sns.set_style("whitegrid")
 sns.regplot(data=df,x="Study_Hours",y="Final_Score",) 
 
-plt.axhline(avg_final_score,color="red",linestyle="--")
-plt.axhline(prev_avg_final_score,color="blue",linestyle="--")
+plt.axhline(avg_final_score,color="red",linestyle="--",label="Avg_score")
+plt.axhline(prev_avg_final_score,color="blue",linestyle="--",label="previous_Avg_score")
 sns.despine()
 start_y = (int(min_final_score) // 10) * 10
 end_y = ((int(df["Final_Score"].max()) // 10) + 1) * 10
@@ -79,20 +51,29 @@ plt.yticks(range(start_y, end_y, 5))
 plt.xlabel("Study Hours per Day")
 plt.ylabel("Final Score")
 plt.title("Study Time vs Final score")
-
+plt.legend()
 plt.tight_layout()
+plt.savefig(
+    "uploads/Studytime_performance1.png",
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.show()
 
   
 
- #boxplot for student marks to studytime
-# plt.figure(figsize=(8,6))
-# sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
-# plt.axhline(avg_final_score,color="red",linestyle="--")
+#boxplot for student marks to studytime
+plt.figure(figsize=(8,6))
+sns.boxplot(data=df, x="Study_Hours", y="Final_Score")
 
-# plt.title("Distribution of Final Scores by Study Hours")
+plt.title("Distribution of Final Scores by Study Hours")
 plt.tight_layout()
-# plt.show()
+plt.savefig(
+    "uploads/Studytime_performance2.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+plt.show()
 
 
 
@@ -103,19 +84,35 @@ plt.figure(figsize=(8,6))
 sns.set_style("whitegrid")
 sns.scatterplot( data=df,x="Attendance_Percentage", y="Final_Score",)
 plt.yticks(range(35, 101, 5))
+df["Score_Category"] = pd.cut(
+    df["Final_Score"],
+    bins=[0, 60, 80, 100],
+    labels=["Below 60", "60-79", "80+"]
+)
+
+
+sns.scatterplot(
+    data=df,
+    x="Attendance_Percentage",
+    y="Final_Score",
+    hue="Score_Category",
+    palette=["red", "orange", "green"]
+)
+
+# Regression line (single color)
 sns.regplot(
     data=df,
     x="Attendance_Percentage",
     y="Final_Score",
     scatter=False,
-    color="red"
+    color="black"
 )
 sns.despine()
 plt.ylabel("MarksObtain")
 plt.xlabel("Attendance")
 plt.title("Attendance (%) vs Final Score Density")
 plt.savefig(
-    "plots/attendance_vs_performance.png",
+    "uploads/attendance_vs_performance.png",
     dpi=300,
     bbox_inches="tight"
 )
@@ -169,6 +166,11 @@ start, end = getrange(min_final_score, max_final_score)
 plt.yticks(range(start, end + 1, 10))
 # plt.yticks(range(start,end+ 1, 10))
 plt.tight_layout()
+plt.savefig(
+    "uploads/parentaleducation_performance.png",
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.show()
 
 #--------------------------------------------------------------------------------------------
@@ -179,6 +181,11 @@ plt.xlabel("Student internet Access ")
 plt.ylabel("no of student")
 plt.title("Student Internet Access ", weight="bold")
 plt.tight_layout()
+plt.savefig(
+    "uploads/internetaccess_performance1.png",
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.show()
 
 
@@ -191,14 +198,19 @@ sns.set_context("talk")
 
 
 sns.set_theme(style="darkgrid")
-sns.stripplot(x="Internet_Access", y="Final_Score", data=df,size=10 ,jitter=True)
+sns.stripplot(x="Internet_Access", y="Final_Score", data=df,size=10 ,jitter=True,hue="Parental_Education")
 plt.xlabel("Student internet Access ")
 plt.ylabel(" Marks of student")
-plt.title("Student  Scores by Internet Access ",size=50, weight="bold")
+plt.title("Student  Scores by Internet Access ",size=30, weight="bold")
 start_y = (int(min_final_score) // 10) * 10
 end_y = ((int(df["Final_Score"].max()) // 10) + 1) * 10
 plt.yticks(range(start_y, end_y, 5))
 plt.tight_layout()
+plt.savefig(
+    "uploads/internetaccess_performance2.png",
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.show()
 #----------------------------------------------------------------------------------------------------------------------
 
@@ -218,5 +230,9 @@ plt.title("Score Distribution: Previous vs Final")
 plt.xlabel("Score")
 plt.ylabel("Count")
 plt.legend()
-
+plt.savefig(
+    "uploads/prev_performance1.png",
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.show()
